@@ -603,7 +603,7 @@ def load_ASR_models(ASR_MODEL_PATH, ASR_MODEL_CONFIG):
         model = ASRCNN(**model_config)
         params = None
         with torch.serialization.safe_globals([getattr]):
-            params = torch.load(model_path, map_location='cpu')['model']
+            params = torch.load(model_path, map_location='cpu', weights_only = True)['model']
         model.load_state_dict(params)
         return model
 
